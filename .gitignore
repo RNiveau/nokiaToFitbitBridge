@@ -1,3 +1,5 @@
 *.tmp
+.idea
 *.iml
 config.json
+node_modules

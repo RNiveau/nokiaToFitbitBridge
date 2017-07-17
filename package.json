@@ -1,0 +1,16 @@
+{
+  "name": "nokia-to-fitbit-bridge",
+  "description": "",
+  "version": "1.0.0",
+  "author": "RomainNV",
+  "private": true,
+  "scripts": {
+    "preinstall": "npm prune",
+    "start": "gulp"
+  },
+  "dependencies": {
+    "request": "2.81.0",
+    "request-promise": "4.2.1"
+  },
+  "devDependencies": {}
+}
