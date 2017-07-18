@@ -4,7 +4,7 @@ var config_nokia = require('./config.json').nokia,
     request = require('request-promise');
 
 module.exports = {
-  get_data: () => {
+  get_last_weight: () => {
     let options = {
       uri: "http://api.health.nokia.com/measure",
       qs: {
@@ -16,9 +16,11 @@ module.exports = {
         oauth_timestamp: new Date().getTime(),
         oauth_token: config_nokia.api_token,
         oauth_version: "1.0",
+        category: 1,
+        limit: 1,
         userid: config_nokia.user_id
       }
     };
     return request.get(options);
   }
-}
+};
