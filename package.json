@@ -9,8 +9,12 @@
     "start": "gulp"
   },
   "dependencies": {
+    "date-format": "1.1.0",
+    "fs-extra": "4.0.0",
     "request": "2.81.0",
     "request-promise": "4.2.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "request-debug": "^0.2.0"
+  }
 }
