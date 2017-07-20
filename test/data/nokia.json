@@ -1,0 +1,62 @@
+{
+  "status": 0,
+  "body": {
+    "updatetime": 1500565472,
+    "measuregrps": [
+      {
+        "grpid": 853954010,
+        "attrib": 0,
+        "date": 1500274722,
+        "category": 1,
+        "measures": [
+          {
+            "value": 57364,
+            "type": 1,
+            "unit": -3
+          },
+          {
+            "value": 801,
+            "type": 8,
+            "unit": -2
+          },
+          {
+            "value": 4682,
+            "type": 76,
+            "unit": -2
+          },
+          {
+            "value": 3433,
+            "type": 77,
+            "unit": -2
+          },
+          {
+            "value": 252,
+            "type": 88,
+            "unit": -2
+          },
+          {
+            "value": 49354,
+            "type": 5,
+            "unit": -3
+          },
+          {
+            "value": 13963,
+            "type": 6,
+            "unit": -3
+          },
+          {
+            "value": 49345,
+            "type": 5,
+            "unit": -3
+          },
+          {
+            "value": 13979,
+            "type": 6,
+            "unit": -3
+          }
+        ]
+      }
+    ],
+    "timezone": "Europe/Paris"
+  }
+}
