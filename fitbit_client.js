@@ -50,6 +50,7 @@ module.exports = {
       }
     };
     return request.get(options)
+        .then(data => JSON.parse(data))
         .catch(error => {
           if (error.response.statusCode === 401) {
             let json_error = JSON.parse(error.response.body);
@@ -76,16 +77,18 @@ module.exports = {
         time: time
       }
     };
-    return request.post(options).catch(error => {
-      if (error.response.statusCode === 401) {
-        let json_error = JSON.parse(error.response.body);
-        if (json_error.errors[0].errorType === "expired_token") {
-          return self.refresh_token().then(() => self.post_new_weight(weight, date, time));
-        } else {
-          throw new Error(error.response.body);
-        }
-      }
-    });
+    return request.post(options)
+        .then(data => JSON.parse(data))
+        .catch(error => {
+          if (error.response.statusCode === 401) {
+            let json_error = JSON.parse(error.response.body);
+            if (json_error.errors[0].errorType === "expired_token") {
+              return self.refresh_token().then(() => self.post_new_weight(weight, date, time));
+            } else {
+              throw new Error(error.response.body);
+            }
+          }
+        });
   },
 
   post_new_fat: function (fat, date, time) {
