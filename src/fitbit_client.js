@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('./config.json'),
+var config = require('../config.json'),
     config_fitbit = config.fitbit,
     fs = require('fs-extra'),
     request = require('request-promise');
@@ -30,7 +30,7 @@ module.exports = {
           refresh_token = token.refresh_token;
           config_fitbit.access_token = access_token;
           config_fitbit.refresh_token = refresh_token;
-          fs.writeJson('./config.json', config)
+          fs.writeJson('../config.json', config)
               .then(() => {
                 console.log('success!')
               })

@@ -1,6 +1,6 @@
 'use strict';
 
-var config_nokia = require('./config.json').nokia,
+var config_nokia = require('../config.json').nokia,
     moment = require('moment'),
     request = require('request-promise');
 
