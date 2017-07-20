@@ -21,6 +21,6 @@ module.exports = {
         userid: config_nokia.user_id
       }
     };
-    return request.get(options);
+    return request.get(options).then(data => JSON.parse(data));
   }
 };
