@@ -1,6 +1,7 @@
 'use strict';
 
 var config_nokia = require('./config.json').nokia,
+    moment = require('moment'),
     request = require('request-promise');
 
 module.exports = {
@@ -17,7 +18,7 @@ module.exports = {
         oauth_token: config_nokia.api_token,
         oauth_version: "1.0",
         category: 1,
-        limit: 1,
+        startdate: moment().subtract(1, 'day').unix(),
         userid: config_nokia.user_id
       }
     };
