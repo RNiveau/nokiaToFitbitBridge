@@ -6,6 +6,7 @@ var assert = require('assert'),
     data = require('./data/nokia.json');
 
 describe('Nokia helper', function () {
+
   describe('get_weight', function () {
 
     it('should return 57.364 from nokia json', function () {
@@ -27,5 +28,12 @@ describe('Nokia helper', function () {
       assert.equal(nokia_helper.get_weight(copy_data), 0);
     });
 
+  });
+
+  describe('get_fat', function () {
+
+    it('should return 13.963 from nokia json', function () {
+      assert.equal(nokia_helper.get_fat(data), 13.963);
+    });
   });
 });
