@@ -3,6 +3,7 @@
 var config = require('../config.json'),
     config_fitbit = config.fitbit,
     fs = require('fs-extra'),
+    logger = require('./logger'),
     request = require('request-promise');
 // require('request-debug')(request);
 
@@ -30,12 +31,12 @@ module.exports = {
           refresh_token = token.refresh_token;
           config_fitbit.access_token = access_token;
           config_fitbit.refresh_token = refresh_token;
-          fs.writeJson('../config.json', config)
+          fs.writeJson('./config.json', config)
               .then(() => {
-                console.log('success!')
+                logger.info("Configuration override");
               })
               .catch(err => {
-                console.error(err)
+                logger.error(err);
               });
           return data;
         });
@@ -54,6 +55,7 @@ module.exports = {
         .catch(error => {
           if (error.response.statusCode === 401) {
             let json_error = JSON.parse(error.response.body);
+            logger.info("Need to refresh token for fitbit");
             if (json_error.errors[0].errorType === "expired_token") {
               return self.refresh_token().then(() => self.get_weight_to_date(date));
             } else {
@@ -83,6 +85,7 @@ module.exports = {
           if (error.response.statusCode === 401) {
             let json_error = JSON.parse(error.response.body);
             if (json_error.errors[0].errorType === "expired_token") {
+              logger.info("Need to refresh token for fitbit");
               return self.refresh_token().then(() => self.post_new_weight(weight, date, time));
             } else {
               throw new Error(error.response.body);
@@ -109,6 +112,7 @@ module.exports = {
       if (error.response.statusCode === 401) {
         let json_error = JSON.parse(error.response.body);
         if (json_error.errors[0].errorType === "expired_token") {
+          logger.info("Need to refresh token for fitbit");
           return self.refresh_token().then(() => self.post_new_fat(weight, date, time));
         } else {
           throw new Error(error.response.body);
