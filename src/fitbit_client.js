@@ -10,6 +10,22 @@ var config = require('../config.json'),
 var access_token = config_fitbit.access_token;
 var refresh_token = config_fitbit.refresh_token;
 
+let write_config = function (data) {
+  let token = JSON.parse(data);
+  access_token = token.access_token;
+  refresh_token = token.refresh_token;
+  config_fitbit.access_token = access_token;
+  config_fitbit.refresh_token = refresh_token;
+  fs.writeJson('./config.json', config)
+      .then(() => {
+        logger.info("Configuration override");
+      })
+      .catch(err => {
+        logger.error(err);
+      });
+  return data;
+};
+
 module.exports = {
 
   refresh_token: () => {
@@ -25,21 +41,7 @@ module.exports = {
       }
     };
     return request.post(options)
-        .then(data => {
-          let token = JSON.parse(data);
-          access_token = token.access_token;
-          refresh_token = token.refresh_token;
-          config_fitbit.access_token = access_token;
-          config_fitbit.refresh_token = refresh_token;
-          fs.writeJson('./config.json', config)
-              .then(() => {
-                logger.info("Configuration override");
-              })
-              .catch(err => {
-                logger.error(err);
-              });
-          return data;
-        });
+        .then(write_config);
   },
 
   get_weight_to_date: function (date) {

@@ -34,7 +34,8 @@ var app = async function () {
 try {
   logger.info("Start application");
   app()
-      .then(() => logger.info("End application"));
+      .then(() => logger.info("End application"))
+      .catch(error => logger.error(error));
 } catch (exception) {
   logger.error(exception);
 }
