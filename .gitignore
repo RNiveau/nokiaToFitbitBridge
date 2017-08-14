@@ -2,5 +2,6 @@
 .idea
 *.iml
 config.json
+refresh_token.json
 node_modules
 *.log

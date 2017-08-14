@@ -16,7 +16,11 @@ let write_config = function (data) {
   refresh_token = token.refresh_token;
   config_fitbit.access_token = access_token;
   config_fitbit.refresh_token = refresh_token;
-  fs.writeJson('./config.json', config)
+  let path_to_file = config.path_to_file;
+  let refresh_json = {
+    refresh_token: refresh_token
+  };
+  fs.writeJson(path_to_file + '/refresh_token.json', refresh_json)
       .then(() => {
         logger.info("Configuration override");
       })
@@ -29,6 +33,12 @@ let write_config = function (data) {
 module.exports = {
 
   refresh_token: () => {
+    let refresh_token;
+    try {
+      refresh_token = require(path_to_file + '/refresh_token.json').refresh_token;
+    } catch (e) {
+      refresh_token = config_fitbit.refresh_token;
+    }
     let options = {
       url: "https://api.fitbit.com/oauth2/token",
       headers: {
