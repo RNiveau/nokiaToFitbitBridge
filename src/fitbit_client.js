@@ -35,7 +35,7 @@ module.exports = {
   refresh_token: () => {
     let refresh_token;
     try {
-      refresh_token = require(path_to_file + '/refresh_token.json').refresh_token;
+      refresh_token = require('../refresh_token.json').refresh_token;
     } catch (e) {
       refresh_token = config_fitbit.refresh_token;
     }
