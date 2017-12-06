@@ -4,7 +4,6 @@ var config = require('../config.json'),
     config_facebook = config.facebook,
     logger = require('./logger'),
     request = require('request-promise');
- require('request-debug')(request);
 
 module.exports = {
 
@@ -19,7 +18,7 @@ module.exports = {
             "id": config_facebook.sender_id
           },
           "message": {
-            "text": "hello, world!"
+            "text": message
           }
       },
       json: true

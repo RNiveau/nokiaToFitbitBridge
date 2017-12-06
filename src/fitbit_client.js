@@ -67,9 +67,32 @@ module.exports = {
         .catch(error => {
           if (error.response.statusCode === 401) {
             let json_error = JSON.parse(error.response.body);
-            logger.info("Need to refresh token for fitbit");
             if (json_error.errors[0].errorType === "expired_token") {
+              logger.info("Need to refresh token for fitbit");
               return self.refresh_token().then(() => self.get_weight_to_date(date));
+            } else {
+              throw new Error(error.response.body);
+            }
+          }
+        });
+  },
+
+  get_water_to_date: function (date) {
+    let self = this;
+    let options = {
+      uri: "https://api.fitbit.com/1/user/-/foods/log/water/date/" + date + ".json",
+      headers: {
+        Authorization: 'Bearer ' + access_token
+      }
+    };
+    return request.get(options)
+        .then(data => JSON.parse(data))
+        .catch(error => {
+          if (error.response.statusCode === 401) {
+            let json_error = JSON.parse(error.response.body);
+            if (json_error.errors[0].errorType === "expired_token") {
+              logger.info("Need to refresh token for fitbit");
+              return self.refresh_token().then(() => self.get_water_to_date(date));
             } else {
               throw new Error(error.response.body);
             }
