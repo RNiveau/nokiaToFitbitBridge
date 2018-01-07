@@ -39,7 +39,7 @@ var app = async function () {
     let conf = _.find(configuration, { hour: parseInt(hour)});
     if (conf !== undefined) {
         if (fitbit_data.summary.water < conf.consumption)
-            facebook_client.send_message("Drink, you are less than "+conf.consumption+"ml");
+            facebook_client.send_message("Drink, you are less than "+conf.consumption+"ml ("+fitbit_data.summary.water+"ml)");
     }
 };
 
