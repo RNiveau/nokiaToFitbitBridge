@@ -7,7 +7,7 @@ var config_nokia = require('../config.json').nokia,
 module.exports = {
   get_last_weight: () => {
     let options = {
-      uri: "http://api.health.nokia.com/measure",
+      uri: "https://api.health.nokia.com/measure",
       qs: {
         action: "getmeas",
         oauth_consumer_key: config_nokia.api_key,
