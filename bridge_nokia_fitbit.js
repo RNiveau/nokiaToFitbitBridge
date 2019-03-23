@@ -8,7 +8,7 @@ var nokia_client = require('./src/nokia_client'),
 
 var app = async function () {
 
-  nokia_client.refresh_token()
+  await nokia_client.refresh_token()
   let nokia_data = await nokia_client.get_last_weight();
   if (nokia_data.body.measuregrps.length == 0) {
     logger.info('No data from nokia');

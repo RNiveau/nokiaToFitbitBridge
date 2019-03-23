@@ -3,5 +3,6 @@
 *.iml
 config.json
 refresh_token.json
+refresh_token_nokia.json
 node_modules
 *.log
