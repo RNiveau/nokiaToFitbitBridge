@@ -22,7 +22,7 @@ let write_config = function (data) {
   };
   fs.writeJson(path_to_file + '/refresh_token.json', refresh_json)
       .then(() => {
-        logger.info("Configuration override");
+        logger.info("Fitbit: Configuration override");
       })
       .catch(err => {
         logger.error(err);
@@ -68,7 +68,7 @@ module.exports = {
           if (error.response.statusCode === 401) {
             let json_error = JSON.parse(error.response.body);
             if (json_error.errors[0].errorType === "expired_token") {
-              logger.info("Need to refresh token for fitbit");
+              logger.info("Fitbit: Need to refresh token for fitbit");
               return self.refresh_token().then(() => self.get_weight_to_date(date));
             } else {
               throw new Error(error.response.body);
@@ -91,7 +91,7 @@ module.exports = {
           if (error.response.statusCode === 401) {
             let json_error = JSON.parse(error.response.body);
             if (json_error.errors[0].errorType === "expired_token") {
-              logger.info("Need to refresh token for fitbit");
+              logger.info("Fitbit: Need to refresh token for fitbit");
               return self.refresh_token().then(() => self.get_water_to_date(date));
             } else {
               throw new Error(error.response.body);
@@ -120,7 +120,7 @@ module.exports = {
           if (error.response.statusCode === 401) {
             let json_error = JSON.parse(error.response.body);
             if (json_error.errors[0].errorType === "expired_token") {
-              logger.info("Need to refresh token for fitbit");
+              logger.info("Fitbit: Need to refresh token for fitbit");
               return self.refresh_token().then(() => self.post_new_weight(weight, date, time));
             } else {
               throw new Error(error.response.body);
@@ -147,7 +147,7 @@ module.exports = {
       if (error.response.statusCode === 401) {
         let json_error = JSON.parse(error.response.body);
         if (json_error.errors[0].errorType === "expired_token") {
-          logger.info("Need to refresh token for fitbit");
+          logger.info("Fitbit: Need to refresh token for fitbit");
           return self.refresh_token().then(() => self.post_new_fat(weight, date, time));
         } else {
           throw new Error(error.response.body);
